@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "budget-app",
+    "name": "Budget app",
     "slug": "budget-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -21,6 +21,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.budget.app",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
@@ -28,6 +29,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4594ab8b-a477-403c-84e8-0d99b4535417"
+      }
     }
   }
 }

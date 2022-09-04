@@ -1,0 +1,1 @@
+export { CreditScreen } from './CreditScreen';

@@ -1,24 +1,27 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import { NavigationContainer, createNavigationContainerRef } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import routes from '../utils/constants/routes';
+import routesPath from '../utils/constants/routesPath';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
+export const navigationRef = createNavigationContainerRef();
+
 export const Navigation = ({ isAuth }) => {
   const publicRoutesOptions = ({ navigation }) => {
     if (isAuth) {
-      navigation.navigate('Home');
+      navigation.navigate(routesPath.HOME);
     }
   };
 
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={publicRoutesOptions}>
-        {routes.publicRoutes.map((route) => (
+        {routes.public.map((route) => (
           <Stack.Screen
             key={route.name}
             name={route.name}
@@ -34,19 +37,28 @@ export const Navigation = ({ isAuth }) => {
 export const TabNavigation = ({ isAuth }) => {
   const privateRoutesOptions = ({ navigation }) => {
     if (!isAuth) {
-      navigation.navigate('Login');
+      navigation.navigate(routesPath.LOGIN);
     }
   };
 
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <Tab.Navigator screenOptions={privateRoutesOptions}>
-        {routes.privateRoutes.map((route) => (
+        {routes.private.map((route) => (
           <Tab.Screen
             key={route.name}
             name={route.name}
             component={route.component}
-            options={route.options}
+            options={{
+              headerLeft: () => (
+                <AntDesign
+                  name="back"
+                  style={{ fontSize: 24, marginLeft: 12 }}
+                  onPress={() => navigationRef.goBack()}
+                />
+              ),
+              ...route.options,
+            }}
           />
         ))}
       </Tab.Navigator>

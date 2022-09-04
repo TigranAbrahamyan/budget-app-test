@@ -1,0 +1,1 @@
+export { TakeCredit } from './TakeCredit';

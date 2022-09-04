@@ -1,6 +1,6 @@
 import { StyleSheet, View, TextInput } from 'react-native';
 
-import { ErrorText } from '../Text/ErrorText';
+import { ErrorText } from '../Text';
 
 export const TextField = ({
   keyboardType = 'default',

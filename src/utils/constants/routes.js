@@ -1,37 +1,47 @@
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
+import routesPath from './routesPath';
 import { BalanceScreen } from '../../screens/BalanceScreen';
+import { CreditScreen } from '../../screens/CreditScreen';
 import { HomeScreen } from '../../screens/HomeScreen';
 import { LoginScreen } from '../../screens/LoginScreen';
 
 export default {
-  publicRoutes: [
+  public: [
     {
-      name: 'Login',
+      name: routesPath.LOGIN,
       component: LoginScreen,
       options: {
         headerShown: false,
       },
     },
   ],
-  privateRoutes: [
+  private: [
     {
-      name: 'Home',
+      name: routesPath.HOME,
       component: HomeScreen,
       options: {
-        headerShown: true,
+        headerLeft: null,
         tabBarIcon: ({ color }) => (
           <FontAwesome name="home" color={color} size={24} />
         ),
       },
     },
     {
-      name: 'Balance',
+      name: routesPath.BALANCE,
       component: BalanceScreen,
       options: {
-        headerShown: true,
         tabBarIcon: ({ color }) => (
           <FontAwesome name="money" color={color} size={24} />
+        ),
+      },
+    },
+    {
+      name: routesPath.CREDIT,
+      component: CreditScreen,
+      options: {
+        tabBarIcon: ({ color }) => (
+          <FontAwesome name="credit-card" color={color} size={24} />
         ),
       },
     },
