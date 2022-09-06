@@ -1,5 +1,5 @@
 import { UPDATE_BALANCE, TAKE_CREDIT } from '../actions/types';
-import { BALANCE_ACTIVITY_TYPES } from '../../utils/constants/types';
+import { BALANCE_ACTIVITY_TYPES } from '../../utils/types';
 
 const initialState = {
   total: 0,

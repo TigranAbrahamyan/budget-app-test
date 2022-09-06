@@ -10,7 +10,7 @@ export const BalanceScreen = () => {
 
   return (
     <ScrollView style={{ padding: 16 }} keyboardShouldPersistTaps="always">
-      <Title text={`Balance - $${balanceState.total}`} />
+      <Title text={`Balance - $${balanceState.total.toFixed(2)}`} />
       <HistoryTable history={balanceState.history} />
     </ScrollView>
   );

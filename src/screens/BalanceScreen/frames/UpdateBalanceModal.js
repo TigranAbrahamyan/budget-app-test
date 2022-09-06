@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { updateBalance } from '../../../store/actions/balance';
+import { isDecimal } from '../../../utils/validations/validations';
 import { BasicButton } from '../../../components/Button';
 import { TextField } from '../../../components/Field';
 import { CenteredModal } from '../../../components/Modal';
@@ -12,20 +13,18 @@ export const UpdateBalanceModal = ({ activityType, modalVisibility, setModalVisi
   const [invalidInputSum, setInvalidInputSum] = React.useState(false);
 
   const updateBalanceHandler = () => {
-    const decimalPattern = /^\d+(\.\d+)?$/g;
-
-    if (!decimalPattern.test(inputSum)) {
-      setInvalidInputSum(true);
-    } else {
+    if (isDecimal(inputSum)) {
       dispatch(updateBalance({ inputSum, activityType }));
       closeModalHandler();
+    } else {
+      setInvalidInputSum(true);
     }
   };
 
   const closeModalHandler = () => {
     setInputSum('');
-    setModalVisibiltiy(false);
     setInvalidInputSum(false);
+    setModalVisibiltiy(false);
   };
 
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { BALANCE_ACTIVITY_TYPES } from '../../../utils/constants/types';
+import { BALANCE_ACTIVITY_TYPES } from '../../../utils/types';
 import { BasicButton } from '../../../components/Button';
 import { BasicText } from '../../../components/Text';
 import { UpdateBalanceModal } from './UpdateBalanceModal';
@@ -41,7 +41,7 @@ export const HistoryTable = ({ history }) => {
           </View>
           <View style={{ width: '90%', position: 'absolute', bottom: 60, padding: 16, backgroundColor: 'black' }}>
             <BasicText
-              text={`+$${history.reduce((acc, n) => acc + (n.type === BALANCE_ACTIVITY_TYPES.INCOME && Number(n.sum)), 0)}`}
+              text={`+$${history.reduce((acc, n) => acc + (n.type === BALANCE_ACTIVITY_TYPES.INCOME && Number(n.sum)), 0).toFixed(2)}`}
               styles={{ color: '#59CE8F' }}
             />
           </View>
@@ -61,7 +61,7 @@ export const HistoryTable = ({ history }) => {
           ))}
           <View style={{ alignItems: 'flex-end', width: '90%', position: 'absolute', bottom: 60, padding: 16, backgroundColor: 'black' }}>
             <BasicText
-              text={`-$${history.reduce((acc, n) => acc + (n.type === BALANCE_ACTIVITY_TYPES.EXPENSE && Number(n.sum)), 0)}`}
+              text={`-$${history.reduce((acc, n) => acc + (n.type === BALANCE_ACTIVITY_TYPES.EXPENSE && Number(n.sum)), 0).toFixed(2)}`}
               styles={{ color: '#E94560' }}
             />
           </View>

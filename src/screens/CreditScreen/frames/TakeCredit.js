@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { takeCredit } from '../../../store/actions/balance';
+import { isDecimal } from '../../../utils/validations/validations';
 import { BasicButton } from '../../../components/Button';
 import { TextField } from '../../../components/Field';
 
@@ -11,17 +12,15 @@ export const TakeCredit = ({ navigateToBalance }) => {
   const [invalidCreditSum, setInvalidCreditSum] = React.useState(false);
 
   const takeCreditHandler = () => {
-    const decimalPattern = /^\d+(\.\d+)?$/g;
-
-    if (!decimalPattern.test(creditSum)) {
-      setInvalidCreditSum(true);
-    } else {
+    if (isDecimal(creditSum)) {
       dispatch(takeCredit(creditSum));
       setCreditSum('');
       setInvalidCreditSum(false);
       navigateToBalance();
+    } else {
+      setInvalidCreditSum(true);
     }
-};
+  };
 
   return (
     <>

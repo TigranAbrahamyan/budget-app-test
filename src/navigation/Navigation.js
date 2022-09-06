@@ -3,8 +3,7 @@ import { NavigationContainer, createNavigationContainerRef } from '@react-naviga
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import routes from '../utils/constants/routes';
-import routesPath from '../utils/constants/routesPath';
+import { PUBLIC_ROUTES, PRIVATE_ROUTES, ROUTE_NAMES } from '../utils/routes';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -14,14 +13,14 @@ export const navigationRef = createNavigationContainerRef();
 export const Navigation = ({ isAuth }) => {
   const publicRoutesOptions = ({ navigation }) => {
     if (isAuth) {
-      navigation.navigate(routesPath.HOME);
+      navigation.navigate(ROUTE_NAMES.HOME);
     }
   };
 
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={publicRoutesOptions}>
-        {routes.public.map((route) => (
+        {PUBLIC_ROUTES.map((route) => (
           <Stack.Screen
             key={route.name}
             name={route.name}
@@ -37,14 +36,14 @@ export const Navigation = ({ isAuth }) => {
 export const TabNavigation = ({ isAuth }) => {
   const privateRoutesOptions = ({ navigation }) => {
     if (!isAuth) {
-      navigation.navigate(routesPath.LOGIN);
+      navigation.navigate(ROUTE_NAMES.LOGIN);
     }
   };
 
   return (
     <NavigationContainer ref={navigationRef}>
       <Tab.Navigator screenOptions={privateRoutesOptions}>
-        {routes.private.map((route) => (
+        {PRIVATE_ROUTES.map((route) => (
           <Tab.Screen
             key={route.name}
             name={route.name}
