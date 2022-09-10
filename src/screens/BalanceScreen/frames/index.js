@@ -1,2 +1,2 @@
-export { BalanceHistoryTable } from './BalanceHistoryTable';
+export { BalanceHistoryList } from './BalanceHistoryList';
 export { BalanceTotal } from './BalanceTotal';

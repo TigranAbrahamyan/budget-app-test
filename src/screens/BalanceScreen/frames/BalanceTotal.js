@@ -5,17 +5,21 @@ import { BALANCE_ACTIVITY_TYPES } from '../../../utils/constants';
 import { BasicText } from '../../../components/Text';
 
 export const BalanceTotal = ({ balanceHistory }) => {
+  const activitesTotalHistory = (type) => {
+    return balanceHistory.reduce((acc, history) => acc + (history.type === type && Number(history.sum)), 0);
+  };
+
   return (
     <View style={styles.content}>
       <View style={styles.totalBox}>
         <BasicText
-          text={`+$${balanceHistory.reduce((acc, history) => acc + (history.type === BALANCE_ACTIVITY_TYPES.INCOME && Number(history.sum)), 0).toFixed(2)}`}
+          text={`+$${activitesTotalHistory(BALANCE_ACTIVITY_TYPES.INCOME).toFixed(2)}`}
           styles={{ color: '#59CE8F' }}
         />
       </View>
       <View style={{ ...styles.totalBox, alignItems: 'flex-end' }}>
         <BasicText
-          text={`-$${balanceHistory.reduce((acc, history) => acc + (history.type === BALANCE_ACTIVITY_TYPES.EXPENSE && Number(history.sum)), 0).toFixed(2)}`}
+          text={`-$${activitesTotalHistory(BALANCE_ACTIVITY_TYPES.EXPENSE).toFixed(2)}`}
           styles={{ color: '#E94560' }}
         />
       </View>

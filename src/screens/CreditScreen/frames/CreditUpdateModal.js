@@ -4,11 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateBalance } from '../../../store/actions/balance';
 import { updateCredit } from '../../../store/actions/credit';
 import { isDecimal } from '../../../utils/validations';
-import { BALANCE_ACTIVITY_TYPES, CREDIT_ACTIVITY_TYPES } from '../../../utils/constants';
 import { BasicButton } from '../../../components/Button';
 import { CenteredModal } from '../../../components/Modal';
 import { TextField } from '../../../components/Field';
 import { Title } from '../../../components/Text';
+import {
+  BALANCE_ACTIVITY_TYPES,
+  CREDIT_ACTIVITY_TYPES,
+  EXPENSE_CREDIT_CATEGORY_KEY,
+} from '../../../utils/constants';
 
 export const CreditUpdateModal = ({
   activityType,
@@ -29,20 +33,21 @@ export const CreditUpdateModal = ({
       return;
     }
 
-    if (activityType === CREDIT_ACTIVITY_TYPES.PAY && Number(inputSum) > balanceState.total) {
-      setInvalidInputSum(true);
-      setInputError('Not enough money in your balance');
-      return;
-    }
-
     if (activityType === CREDIT_ACTIVITY_TYPES.PAY && Number(inputSum) > creditTotal) {
       setInvalidInputSum(true);
       setInputError("You don't have that much credit");
       return;
     }
 
+    if (activityType === CREDIT_ACTIVITY_TYPES.PAY && Number(inputSum) > balanceState.total) {
+      setInvalidInputSum(true);
+      setInputError('Not enough money in your balance');
+      return;
+    }
+
     dispatch(updateBalance({
       inputSum: Number(inputSum),
+      expenseCategory: activityType === CREDIT_ACTIVITY_TYPES.PAY ? EXPENSE_CREDIT_CATEGORY_KEY : '',
       activityType: activityType === CREDIT_ACTIVITY_TYPES.TAKE ? BALANCE_ACTIVITY_TYPES.INCOME : BALANCE_ACTIVITY_TYPES.EXPENSE,
     }));
 
@@ -63,9 +68,9 @@ export const CreditUpdateModal = ({
       visible={modalVisibility}
       closeModal={closeModalHandler}
     >
-      <Title text={`Your balance - $${balanceState.total.toFixed(2)}`} />
+      <Title text={`Your balance: $${balanceState.total.toFixed(2)}`} />
       <TextField
-        styles={{ marginTop: 8, marginBottom: 8 }}
+        styles={{ marginVertical: 8 }}
         placeholder="Sum"
         keyboardType="numeric"
         onChangeText={setInputSum}

@@ -6,7 +6,7 @@ import { BasicButton } from '../../../components/Button';
 import { BasicText } from '../../../components/Text';
 import { CreditUpdateModal } from './CreditUpdateModal';
 
-export const CreditHistoryTable = ({ creditHistory, creditTotal }) => {
+export const CreditHistoryList = ({ creditHistory, creditTotal }) => {
   const [activityType, setActivityType] = React.useState('');
   const [modalVisibility, setModalVisibiltiy] = React.useState(false);
 
@@ -25,7 +25,7 @@ export const CreditHistoryTable = ({ creditHistory, creditTotal }) => {
       />
 
       <ScrollView contentContainerStyle={styles.content}>
-        <View>
+        <View style={{ width: '40%' }}>
           <BasicButton
             styles={styles.button}
             text="Take"
@@ -39,7 +39,7 @@ export const CreditHistoryTable = ({ creditHistory, creditTotal }) => {
             />
           ))}
         </View>
-        <View style={{ alignItems: 'flex-end' }}>
+        <View style={{ width: '40%', alignItems: 'flex-end' }}>
           <BasicButton
             styles={{ ...styles.button, backgroundColor: '#E94560' }}
             text="Pay"
@@ -65,7 +65,6 @@ const styles = StyleSheet.create({
   },
   button: {
     width: 100,
-    marginTop: 8,
-    marginBottom: 8,
+    marginVertical: 8,
   },
 });

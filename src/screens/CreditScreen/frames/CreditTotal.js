@@ -5,17 +5,21 @@ import { CREDIT_ACTIVITY_TYPES } from '../../../utils/constants';
 import { BasicText } from '../../../components/Text';
 
 export const CreditTotal = ({ creditHistory }) => {
+  const activitesTotalHistory = (type) => {
+    return creditHistory.reduce((acc, history) => acc + (history.type === type && Number(history.sum)), 0);
+  };
+
   return (
     <View style={styles.content}>
       <View style={styles.totalBox}>
         <BasicText
-          text={`+$${creditHistory.reduce((acc, history) => acc + (history.type === CREDIT_ACTIVITY_TYPES.TAKE && Number(history.sum)), 0).toFixed(2)}`}
+          text={`+$${activitesTotalHistory(CREDIT_ACTIVITY_TYPES.TAKE).toFixed(2)}`}
           styles={{ color: '#59CE8F' }}
         />
       </View>
       <View style={{ ...styles.totalBox, alignItems: 'flex-end' }}>
         <BasicText
-          text={`-$${creditHistory.reduce((acc, history) => acc + (history.type === CREDIT_ACTIVITY_TYPES.PAY && Number(history.sum)), 0).toFixed(2)}`}
+          text={`-$${activitesTotalHistory(CREDIT_ACTIVITY_TYPES.PAY).toFixed(2)}`}
           styles={{ color: '#E94560' }}
         />
       </View>
