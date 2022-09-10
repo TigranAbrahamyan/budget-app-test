@@ -1,2 +1,3 @@
-export { PUBLIC_ROUTES, PRIVATE_ROUTES } from './routes';
-export { ROUTE_NAMES } from './routeNames';
+export { PRIVATE_ROUTES } from './private';
+export { PUBLIC_ROUTES } from './public';
+export { ROUTE_NAMES } from './names';

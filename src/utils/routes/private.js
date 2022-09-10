@@ -1,20 +1,9 @@
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-import { ROUTE_NAMES } from './routeNames';
+import { ROUTE_NAMES } from './names';
 import { BalanceScreen } from '../../screens/BalanceScreen';
 import { CreditScreen } from '../../screens/CreditScreen';
 import { HomeScreen } from '../../screens/HomeScreen';
-import { LoginScreen } from '../../screens/LoginScreen';
-
-export const PUBLIC_ROUTES = [
-  {
-    name: ROUTE_NAMES.LOGIN,
-    component: LoginScreen,
-    options: {
-      headerShown: false,
-    },
-  },
-];
 
 export const PRIVATE_ROUTES = [
   {

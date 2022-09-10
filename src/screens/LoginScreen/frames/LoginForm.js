@@ -1,9 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
+import { setIsAuth, setUser } from '../../../store/actions/auth';
+import { isOnlyLetters } from '../../../utils/validations';
 import { BasicButton } from '../../../components/Button';
 import { TextField } from '../../../components/Field';
-import { setIsAuth, setUser } from '../../../store/actions/auth';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -11,12 +12,13 @@ export const LoginForm = () => {
   const [error, setError] = React.useState(false);
 
   const pressLoginHandler = () => {
-    if (!name) {
+    if (!isOnlyLetters(name.trim())) {
       setError(true);
-    } else {
-      dispatch(setUser(name));
-      dispatch(setIsAuth(true));
+      return;
     }
+
+    dispatch(setUser(name.trim()));
+    dispatch(setIsAuth(true));
   };
 
   return (
@@ -27,7 +29,7 @@ export const LoginForm = () => {
         onChangeText={setName}
         value={name}
         isError={error}
-        errorText="Name is required"
+        errorText="Name should contain english letters"
       />
       <BasicButton text="Login" onPress={pressLoginHandler} />
     </>

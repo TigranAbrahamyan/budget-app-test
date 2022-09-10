@@ -1,5 +1,6 @@
 {
   "expo": {
+    "entryPoint": "./src/App.js",
     "name": "Budget app",
     "slug": "budget-app",
     "version": "1.0.0",

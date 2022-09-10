@@ -4,4 +4,6 @@ export const SET_AUTH = 'SET_AUTH';
 
 // BALANCE
 export const UPDATE_BALANCE = 'UPDATE_BALANCE';
-export const TAKE_CREDIT = 'TAKE_CREDIT';
+
+// CREDIT
+export const UPDATE_CREDIT = 'UPDATE_CREDIT';

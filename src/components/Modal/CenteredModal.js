@@ -1,29 +1,35 @@
 import React from 'react';
-import { StyleSheet, View, Modal } from 'react-native';
+import { StyleSheet, View, Modal, TouchableWithoutFeedback } from 'react-native';
 import { BasicButton } from '../Button/BasicButton';
 
 export const CenteredModal = ({
   children,
-  animationType,
   visible,
+  animationType,
   closeModal,
+  closeOnOverlay = true,
+  transparent = true,
 }) => {
   return (
     <Modal
       animationType={animationType}
       visible={visible}
-      transparent={true}
+      transparent={transparent}
     >
-      <View style={styles.centeredView}>
-        <View style={styles.modalView}>
-          {children}
-          <BasicButton
-            styles={styles.closeModalBtn}
-            text="Close"
-            onPress={closeModal}
-          />
+      <TouchableWithoutFeedback onPress={closeOnOverlay ? closeModal : null}>
+        <View style={styles.centeredView}>
+          <TouchableWithoutFeedback>
+            <View style={styles.modalView}>
+              {children}
+              <BasicButton
+                styles={styles.closeModalBtn}
+                text="Close"
+                onPress={closeModal}
+              />
+            </View>
+          </TouchableWithoutFeedback>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     </Modal>
   );
 };

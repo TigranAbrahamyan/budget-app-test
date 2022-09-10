@@ -1,11 +1,6 @@
-import { UPDATE_BALANCE, TAKE_CREDIT } from './types';
+import { UPDATE_BALANCE } from '../actionTypes';
 
 export const updateBalance = (payload) => ({
   type: UPDATE_BALANCE,
-  payload,
-});
-
-export const takeCredit = (payload) => ({
-  type: TAKE_CREDIT,
   payload,
 });

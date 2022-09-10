@@ -1,19 +1,19 @@
-import { UPDATE_BALANCE } from '../actionTypes';
-import { BALANCE_ACTIVITY_TYPES } from '../../utils/constants';
+import { UPDATE_CREDIT } from '../actionTypes';
+import { CREDIT_ACTIVITY_TYPES } from '../../utils/constants';
 
 const initialState = {
   total: 0,
   history: [],
 };
 
-export const balanceReducer = (state = initialState, action) => {
+export const creditReducer = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_BALANCE:
+    case UPDATE_CREDIT:
       const { inputSum, activityType } = action.payload;
 
       return {
         ...state,
-        total: activityType === BALANCE_ACTIVITY_TYPES.INCOME ? state.total + inputSum : state.total - inputSum,
+        total: activityType === CREDIT_ACTIVITY_TYPES.TAKE ? state.total + inputSum : state.total - inputSum,
         history: [
           ...state.history,
           { id: Date.now(), sum: inputSum, type: activityType },

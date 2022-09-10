@@ -1,2 +1,2 @@
-export { UpdateBalanceModal } from './UpdateBalanceModal';
-export { HistoryTable } from './HistoryTable';
+export { BalanceHistoryTable } from './BalanceHistoryTable';
+export { BalanceTotal } from './BalanceTotal';

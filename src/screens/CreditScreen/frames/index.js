@@ -1,1 +1,2 @@
-export { TakeCredit } from './TakeCredit';
+export { CreditHistoryTable } from './CreditHistoryTable';
+export { CreditTotal } from './CreditTotal';

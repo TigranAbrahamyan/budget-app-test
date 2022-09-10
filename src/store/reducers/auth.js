@@ -1,4 +1,4 @@
-import { SET_NAME, SET_AUTH } from '../actions/types';
+import { SET_NAME, SET_AUTH } from '../actionTypes';
 
 const initialState = {
   name: '',
